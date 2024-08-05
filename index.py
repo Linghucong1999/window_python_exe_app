@@ -28,6 +28,12 @@ class DataCrawlerApp:
         tk.Button(root, text="发送", command=self.send_data).grid(
             row=4, column=1)
 
+    def send_data(self):
+        token = self.token_entry.get()
+        cookie = self.cookie_entry.get()
+        data_raw = self.json_text.get("1.0", tk.END)
+        print(f"isp-token:{token}, Cookie:{cookie}, data:{data_raw}")
+
 
 if __name__ == "__main__":
     root = tk.Tk()
