@@ -32,7 +32,17 @@ class DataCrawlerApp:
         token = self.token_entry.get()
         cookie = self.cookie_entry.get()
         data_raw = self.json_text.get("1.0", tk.END)
-        print(f"isp-token:{token}, Cookie:{cookie}, data:{data_raw}")
+        Header = {
+            'Accept': 'application/json, text/plain, */*',
+            'Accept-Language': 'zh-CN,zh;q=0.9',
+            'Authorization': token,
+            'Content-Type': 'application/json;charset=UTF-8',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36'
+        }
+        session = requests.Session()
+        response = session.request(method='POST',
+                                   url='https://dsppacrm.dsppasmart.com/api/user/behavior/add', headers=Header, data=data_raw)
+        print(response.json())
 
 
 if __name__ == "__main__":
